@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignUpComponent } from "./core/pages/sign-up/sign-up.component";
-import { BrowserModule } from "@angular/platform-browser";
-import {SignInComponent} from "./core/pages/sign-in/sign-in.component";
+import { BrowserModule } from '@angular/platform-browser';
+
+import { SignUpComponent } from './core/pages/sign-up/sign-up.component';
+import { SignInComponent } from './core/pages/sign-in/sign-in.component';
+import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [
-    RouterModule,
-    BrowserModule
-  ]
+  exports: [RouterModule, BrowserModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
