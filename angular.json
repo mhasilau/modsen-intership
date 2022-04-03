@@ -103,9 +103,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "modsen-intership"
+  "defaultProject": "modsen-intership",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
