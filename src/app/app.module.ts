@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignUpModule } from "./pages/sign-up/sign-up.module";
+import { SignUpModule } from "./core/pages/sign-up/sign-up.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderModule } from "./components/header/header.module";
-import { FooterModule } from "./components/footer/footer.module";
+import { HeaderModule } from "./core/components/header/header.module";
+import { FooterModule } from "./core/components/footer/footer.module";
+import { SignInModule } from "./core/pages/sign-in/sign-in.module";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FooterModule } from "./components/footer/footer.module";
     BrowserModule,
     AppRoutingModule,
     SignUpModule,
+    SignInModule,
     BrowserAnimationsModule,
     HeaderModule,
     FooterModule
