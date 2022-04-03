@@ -1,0 +1,18 @@
+header {
+  padding: 5px;
+  height: 60px;
+  background-color: #8fa3a8;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  img {
+    height: 90%;
+  }
+
+  button {
+    height: 50%;
+    align-self: center;
+  }
+}
