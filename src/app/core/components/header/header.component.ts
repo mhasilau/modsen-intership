@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -6,14 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+
+  // eslint-disable-next-line prettier/prettier
+  constructor(private router: Router) {}
   // eslint-disable-next-line prettier/prettier
   isLogin: boolean = false;
-  signInUp: string = 'sign-in';
+  signInUp: string = 'Sign-in';
+  link: string = '/sing-in';
 
   authPage = (): void => {
-    this.signInUp === 'sign-in'
-      ? (this.signInUp = 'sign-up')
-      : (this.signInUp = 'sign-in');
+    if (this.router.url === '/sign-in') {
+      this.signInUp = 'Sign-up';
+      this.link = '/sign-up';
+    } else {
+      this.signInUp = 'Sign-in';
+      this.link = '/sign-in';
+    }
   };
 
   logout = (): void => {

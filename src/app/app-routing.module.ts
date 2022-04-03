@@ -8,7 +8,8 @@ import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-foun
 import { MainPageComponent } from './core/pages/main-page/main-page.component';
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', redirectTo: '/user', pathMatch: 'full' },
+  { path: 'user', component: MainPageComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: '**', component: PageNotFoundComponent },

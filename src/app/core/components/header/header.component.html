@@ -1,7 +1,7 @@
 <header>
-  <a routerLink="sign-in"><img src="../../../../assets/img/header/logo.png" alt=""></a>
+  <a routerLink=""><img src="assets/img/header/logo.png" alt=""></a>
   <div class="buttons">
     <button mat-raised-button *ngIf="isLogin" (click)="logout()">Logout</button>
-    <a routerLink="{{signInUp}}" (click)="authPage()">{{signInUp}}</a>
+    <a routerLink="{{link}}" routerLinkActive="active" (click)="authPage()">{{signInUp}}</a>
   </div>
 </header>
