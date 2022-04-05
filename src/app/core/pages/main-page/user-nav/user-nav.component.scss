@@ -1,0 +1,13 @@
+nav {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    text-align: right;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
