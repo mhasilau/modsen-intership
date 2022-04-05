@@ -11,8 +11,12 @@ header {
     height: 90%;
   }
 
-  button {
+  .buttons {
     height: 50%;
     align-self: center;
+
+    a {
+      text-decoration: none;
+    }
   }
 }

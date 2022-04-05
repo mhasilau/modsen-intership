@@ -9,6 +9,7 @@ import { HeaderModule } from './core/components/header/header.module';
 import { FooterModule } from './core/components/footer/footer.module';
 import { SignInModule } from './core/pages/sign-in/sign-in.module';
 import { PageNotFoundModule } from './core/pages/page-not-found/page-not-found.module';
+import { MainPageModule } from './core/pages/main-page/main-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { PageNotFoundModule } from './core/pages/page-not-found/page-not-found.m
     HeaderModule,
     FooterModule,
     PageNotFoundModule,
+    MainPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
