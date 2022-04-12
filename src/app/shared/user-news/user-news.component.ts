@@ -21,29 +21,16 @@ export class UserNewsComponent implements OnInit{
   postsSelf:IPost[] = [];
 
   ngOnInit(): void {
-    console.log('news');
     this.userApiService.user$.subscribe(value => this.user = value);
-    console.log(this.user);
     this.postsService.getPosts().subscribe(posts => {
       switch (this.router.url) {
         case '/user/news':
-          posts.forEach((post) => { // TODO filter
-            if (post.userId !== this.user.id) {
-              this.postsNews.push(post);
-            }
-          });
+          this.postsNews = posts.filter(post => post.userId !== this.user.id)
           break;
         case '/user/self':
-          posts.forEach((post) => { // TODO filter
-            if (post.userId === this.user.id) {
-              this.postsSelf.push(post);
-            }
-          });
+          this.postsSelf = posts.filter(post => post.userId === this.user.id)
           break;
       }
     });
-    console.log(this.router.url);
   };
-
-
 }

@@ -10,9 +10,9 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" class="form-control" [formControl]="pass">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input matInput [type]="hide_password_icon ? 'password' : 'text'" class="form-control" [formControl]="password">
+      <button mat-icon-button matSuffix (click)="hide_password_icon = !hide_password_icon" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide_password_icon" >
+        <mat-icon>{{hide_password_icon ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
 

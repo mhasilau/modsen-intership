@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {IUserSignIn} from "../../interfaces/user.interface";
-import {JSON_API} from "../../api/api-placeholder";
+import {JSON_API} from "../../api/api-placeholder.constans";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({

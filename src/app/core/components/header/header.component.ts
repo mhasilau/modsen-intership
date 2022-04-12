@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from "../../services/auth.service";
 
@@ -7,33 +7,12 @@ import { AuthService } from "../../services/auth.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent { // TODO fix normal render logout button
 
-  constructor(private router: Router, private authService: AuthService) {}
-
-  ngOnInit(): void {
-    this.authService.userAuth$.subscribe(value => this.isLogin = value);
-    console.log(this.isLogin)
-  }
-
-  isLogin: boolean = false;
-  signInUp: string = 'Sign-in';
-  link: string = '/sing-in';
-
-
-  authPage = (): void => {
-    if (this.router.url === '/sign-in') {
-      this.signInUp = 'Sign-up';
-      void this.router.navigate(['/sign-up']);
-    } else {
-      this.signInUp = 'Sign-in';
-      void this.router.navigate(['/sign-in']);
-    }
-  };
+  constructor(private router: Router, public authService: AuthService) {}
 
   logout = (): void => {
     localStorage.removeItem('token');
     void this.router.navigate(['/sign-in']);
-    this.isLogin = false;
   };
 }

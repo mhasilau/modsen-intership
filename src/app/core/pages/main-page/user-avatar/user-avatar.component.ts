@@ -15,7 +15,7 @@ export class UserAvatarComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('ava');
-    this.userApiService.user$.subscribe(value => this.uid = value?.id);
+    this.userApiService.user$.subscribe(value => this.uid = value?.id); // TODO communicate subscribes
     console.log(this.uid);
     this.avatarService.getUserAvatar().subscribe(user => {
       user.find( user => {
