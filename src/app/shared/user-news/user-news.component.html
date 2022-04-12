@@ -1,4 +1,12 @@
-<article class="user-self-posts" *ngFor="let post of speakers">
-  <p>{{post.name}}</p>
-  <p>{{post.position}}</p>
-</article>
+<ng-container *ngIf="postsNews">
+  <article class="user-self-posts" *ngFor="let post of postsNews">
+    <p>{{post.title}}</p>
+    <p>{{post.body}}</p>
+  </article>
+</ng-container>
+<ng-container *ngIf="postsSelf">
+  <article class="user-self-posts" *ngFor="let post of postsSelf">
+    <p>{{post.title}}</p>
+    <p>{{post.body}}</p>
+  </article>
+</ng-container>

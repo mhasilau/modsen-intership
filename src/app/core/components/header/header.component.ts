@@ -1,32 +1,39 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
-
+import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router) {}
-  // eslint-disable-next-line prettier/prettier
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.userAuth$.subscribe(value => this.isLogin = value);
+    console.log(this.isLogin)
+  }
+
   isLogin: boolean = false;
   signInUp: string = 'Sign-in';
   link: string = '/sing-in';
 
+
   authPage = (): void => {
     if (this.router.url === '/sign-in') {
       this.signInUp = 'Sign-up';
-      this.link = '/sign-up';
+      void this.router.navigate(['/sign-up']);
     } else {
       this.signInUp = 'Sign-in';
-      this.link = '/sign-in';
+      void this.router.navigate(['/sign-in']);
     }
   };
 
   logout = (): void => {
+    localStorage.removeItem('token');
+    void this.router.navigate(['/sign-in']);
     this.isLogin = false;
   };
 }

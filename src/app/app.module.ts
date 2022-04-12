@@ -10,6 +10,7 @@ import { FooterModule } from './core/components/footer/footer.module';
 import { SignInModule } from './core/pages/sign-in/sign-in.module';
 import { PageNotFoundModule } from './core/pages/page-not-found/page-not-found.module';
 import { MainPageModule } from './core/pages/main-page/main-page.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { MainPageModule } from './core/pages/main-page/main-page.module';
     FooterModule,
     PageNotFoundModule,
     MainPageModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

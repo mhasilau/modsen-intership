@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   max-width: 80%;
   min-width: 80%;
   height: 100%;
@@ -11,7 +11,7 @@
     flex: 0 0 auto;
   }
 
-  router-outlet {
+  .routing {
     flex: 1 0 auto;
   }
 
