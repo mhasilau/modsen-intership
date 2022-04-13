@@ -17,13 +17,8 @@ export class UserAvatarComponent implements OnInit{
     console.log('ava');
     this.userApiService.user$.subscribe(value => this.uid = value?.id); // TODO communicate subscribes
     console.log(this.uid);
-    this.avatarService.getUserAvatar().subscribe(user => {
-      user.find( user => {
-        if (user.id === this.uid) {
-          this.userAvatar = user.avatar;
-          console.log(user)
-        }
-      })
+    this.avatarService.getUserAvatar().subscribe(users => {
+      const user = users.find( user => this.userAvatar = user.avatar)
     })
   };
 }

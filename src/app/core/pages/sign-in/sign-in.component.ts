@@ -4,7 +4,7 @@ import { UserApiService } from '../../services/user-api.service';
 import { Router } from '@angular/router';
 import { REGEXP } from "../../../shared/regexp";
 import { IUserSignIn} from "../../../interfaces/user.interface";
-import {AuthService} from "../../services/auth.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +13,7 @@ import {AuthService} from "../../services/auth.service";
 })
 export class SignInComponent {
   constructor(private userApiService: UserApiService, private router: Router, private authService: AuthService) {}
-
+  // TODO add FormGroup
   password = new FormControl('', [Validators.required, Validators.pattern(REGEXP.password)]);
 
   email = new FormControl('', [Validators.required, Validators.pattern(REGEXP.email)]);
