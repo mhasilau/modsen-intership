@@ -1,32 +1,18 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
-
+import {Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent { // TODO fix normal render logout button
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router) {}
-  // eslint-disable-next-line prettier/prettier
-  isLogin: boolean = false;
-  signInUp: string = 'Sign-in';
-  link: string = '/sing-in';
-
-  authPage = (): void => {
-    if (this.router.url === '/sign-in') {
-      this.signInUp = 'Sign-up';
-      this.link = '/sign-up';
-    } else {
-      this.signInUp = 'Sign-in';
-      this.link = '/sign-in';
-    }
-  };
+  constructor(private router: Router, public authService: AuthService) {}
 
   logout = (): void => {
-    this.isLogin = false;
+    localStorage.removeItem('token');
+    void this.router.navigate(['/sign-in']);
   };
 }
