@@ -39,6 +39,7 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
 #name: Deploy to Firebase Hosting on merge
 #'on':
 #  push:
