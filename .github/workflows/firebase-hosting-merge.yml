@@ -9,15 +9,6 @@ jobs:
   build:
     name: Dist
     runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-##      - run: npm run lint
-#      - uses: FirebaseExtended/action-hosting-deploy@v0
-#        with:
-#          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-#          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MODSEN_A85C3 }}'
-#          channelId: live
-#          projectId: modsen-a85c3
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
@@ -48,3 +39,12 @@ jobs:
               args: deploy --only hosting
             env:
               FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+#    steps:
+#      - uses: actions/checkout@v2
+##      - run: npm run lint
+#      - uses: FirebaseExtended/action-hosting-deploy@v0
+#        with:
+#          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+#          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MODSEN_A85C3 }}'
+#          channelId: live
+#          projectId: modsen-a85c3
