@@ -7,7 +7,7 @@ on:
     branches: [main, firebase]
 jobs:
   build:
-    name: Dist
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,27 +22,23 @@ jobs:
           name: build
           path: build
   deploy:
-    name: Deploy
+    name: Dist
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
-#      - name: Download artifact
-#        uses: actions/download-artifact@main
-#        with:
-#          name: build
-#          path: build
+      - name: Download artifact
+        uses: actions/download-artifact@main
+        with:
+          name: build
+          path: build
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: a85c3/firebase-action@master
         with:
           args: deploy --only hosting
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MODSEN_A85C3 }}'
-          channelId: live
-          projectId: modsen-a85c3
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MODSEN_A85C3 }}
 
 #        env:
 #          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MODSEN_A85C3 }}
