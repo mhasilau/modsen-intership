@@ -39,6 +39,8 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MODSEN_A85C3 }}
+          channelId: live
+          projectId: modsen-a85c3
 
 #name: Deploy to Firebase Hosting on merge
 #'on':
