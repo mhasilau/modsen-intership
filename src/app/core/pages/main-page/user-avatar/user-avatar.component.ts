@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { noAvatarURL } from '../../../../api/api.config';
 import {UserApiService} from "../../../services/user-api.service";
 import {AvatarService} from "../../../services/avatar.service";
+import {IUserSignIn} from "../../../../interfaces/user.interface";
 
 @Component({
   selector: 'app-user-avatar',
@@ -18,7 +19,8 @@ export class UserAvatarComponent implements OnInit{
     this.userApiService.user$.subscribe(value => this.uid = value?.id); // TODO communicate subscribes
     console.log(this.uid);
     this.avatarService.getUserAvatar().subscribe(users => {
-      const user = users.find( user => this.userAvatar = user.avatar)
+      const userLogin = users.find( user => user.id === this.uid)
+      this.userAvatar = userLogin!.avatar
     })
   };
 }

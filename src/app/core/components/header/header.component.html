@@ -1,6 +1,6 @@
 <header>
   <a routerLink=""><img src="assets/img/header/logo.png" alt=""></a>
   <div class="buttons">
-    <button mat-raised-button *ngIf="authService.userAuth$ | async" (click)="logout()">Logout</button>
+    <button mat-raised-button *ngIf="authService.userAuth$ | async" (click)="logout()">{{ 'logout' | translate }}</button>
   </div>
 </header>
