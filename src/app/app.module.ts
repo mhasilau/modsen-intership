@@ -10,7 +10,13 @@ import { FooterModule } from './core/components/footer/footer.module';
 import { SignInModule } from './core/pages/sign-in/sign-in.module';
 import { PageNotFoundModule } from './core/pages/page-not-found/page-not-found.module';
 import { MainPageModule } from './core/pages/main-page/main-page.module';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, '/assets/locale/', '.json');
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
     PageNotFoundModule,
     MainPageModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      useDefaultLang: false,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

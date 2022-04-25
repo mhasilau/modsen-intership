@@ -1,7 +1,7 @@
 <nav>
-  <a routerLink="self" routerLinkActive="active" mat-button>Main page</a>
-  <a routerLink="news" routerLinkActive="active" mat-button>News</a>
-  <a routerLink="settings" routerLinkActive="active" mat-button>Settings</a>
-  <a routerLink="/data" routerLinkActive="active" mat-button>Data</a>
-  <a routerLink="" routerLinkActive="active" mat-button>Just a link</a>
+  <a routerLink="self" routerLinkActive="active" mat-button>{{ 'user-nav.main' | translate }}</a>
+  <a routerLink="news" routerLinkActive="active" mat-button>{{ 'user-nav.news' | translate }}</a>
+  <a routerLink="settings" routerLinkActive="active" mat-button>{{ 'user-nav.settings' | translate }}</a>
+  <a routerLink="/data" routerLinkActive="active" mat-button>404</a>
+  <a routerLink="" routerLinkActive="active" mat-button>{{ 'user-nav.link' | translate }}</a>
 </nav>

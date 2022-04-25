@@ -18,4 +18,16 @@
   app-footer {
     flex: 0 0 auto;
   }
+
+  .locale {
+    display: flex;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+
+    img {
+      height: 25px;
+      margin: 5px;
+    }
+  }
 }

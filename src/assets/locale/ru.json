@@ -1,0 +1,10 @@
+{
+  "logout": "Выйти",
+  "user-nav": {
+    "main": "Главная",
+    "news": "Новости",
+    "settings": "Настройки",
+    "link": "Ссылка"
+  },
+  "footer": "Михаил Гасилов для стажировки Modsen Software Engineering"
+}
