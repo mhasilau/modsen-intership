@@ -1,0 +1,12 @@
+<ng-container *ngIf="postsNews" >
+  <article class="user-self-posts" *ngFor="let post of postsNews">
+    <p class="user-self-posts-title">{{post.title | headline}}</p>
+    <p class="user-self-posts-body">{{post.body | headline}}</p>
+  </article>
+</ng-container>
+<ng-container *ngIf="postsSelf">
+  <article class="user-self-posts" *ngFor="let post of postsSelf">
+    <p class="user-self-posts-title">{{post.title | headline}}</p>
+    <p class="user-self-posts-body">{{post.body | headline}}</p>
+  </article>
+</ng-container>

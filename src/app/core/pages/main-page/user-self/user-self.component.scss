@@ -1,21 +1,42 @@
 .user-self {
   padding: 10px;
 
-  article {
-    background-color: #dedcde;
+  &-info {
+    background-color: rgba(241, 238, 241, 0.46);
     margin: 10px;
     padding: 10px;
+    text-align: left;
+
+    &-name {
+
+    }
+
   }
+  &-data {
 
-  &-info {
+    .left {
+      display: flex;
 
+      .headline {
+        width: 120px;
+      }
+    }
   }
-
   &-add-post {
+    &-message {
 
+      textarea {
+        width: 80%;
+        height: 100px;
+        overflow-y: auto;
+        resize: none;
+      }
+    }
   }
 
   &-posts {
     min-width: 300px;
   }
+
+
 }

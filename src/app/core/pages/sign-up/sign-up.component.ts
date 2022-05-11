@@ -9,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class SignUpComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
-  getErrorMessage() {
+  getErrorMessage(): string {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
