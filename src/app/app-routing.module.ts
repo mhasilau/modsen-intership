@@ -7,7 +7,7 @@ import { SignInComponent } from './core/pages/sign-in/sign-in.component';
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
 import { MainPageComponent } from './core/pages/main-page/main-page.component';
 import { UserSelfComponent } from './core/pages/main-page/user-self/user-self.component';
-import { UserNewsComponent } from './shared/user-news/user-news.component';
+import { UserNewsComponent } from './core/components/user-news/user-news.component';
 import { UserSettingsComponent } from './core/pages/main-page/user-settings/user-settings.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
@@ -23,14 +23,18 @@ const routes: Routes = [
 
     redirectTo: '/user/self',
     pathMatch: 'full',
-
   },
   {
     path: 'user',
     redirectTo: '/user/self',
     pathMatch: 'full',
   },
-  { path: 'user', component: MainPageComponent, children: innerRoutes, canActivate: [AuthGuard] },
+  {
+    path: 'user',
+    component: MainPageComponent,
+    children: innerRoutes,
+    canActivate: [AuthGuard],
+  }, // TODO add guards
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: '**', component: PageNotFoundComponent },

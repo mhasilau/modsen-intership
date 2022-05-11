@@ -4,7 +4,7 @@ import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../../../app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
-import {TranslateModule} from "@ngx-translate/core";
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [HeaderComponent],
