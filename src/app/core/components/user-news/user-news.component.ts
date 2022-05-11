@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import { UserApiService } from '../../core/services/user-api.service';
-import { PostsService } from '../../core/services/posts.service';
+import { Component, OnInit } from '@angular/core';
+import { UserApiService } from '../../services/user-api.service';
+import { PostsService } from '../../services/posts.service';
 import { Router } from '@angular/router';
-import { IPost } from '../../interfaces/posts-interface';
+import { IPost } from '../../../interfaces/posts-interface';
 
 
 @Component({
@@ -25,10 +25,10 @@ export class UserNewsComponent implements OnInit{
     this.postsService.getPosts().subscribe(posts => {
       switch (this.router.url) {
         case '/user/news':
-          this.postsNews = posts.filter(post => post.userId !== this.user.id)
+          this.postsNews = posts.filter(post => post.userId !== this.user.id);
           break;
         case '/user/self':
-          this.postsSelf = posts.filter(post => post.userId === this.user.id)
+          this.postsSelf = posts.filter(post => post.userId === this.user.id);
           break;
       }
     });

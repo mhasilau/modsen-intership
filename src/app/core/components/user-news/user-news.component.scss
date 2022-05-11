@@ -1,0 +1,13 @@
+.user-self-posts {
+  background-color: #dedcde;
+  margin: 10px;
+  padding: 10px;
+
+  &-title {
+    font-weight: bolder;
+  }
+
+  &-body {
+    text-align: left;
+  }
+}

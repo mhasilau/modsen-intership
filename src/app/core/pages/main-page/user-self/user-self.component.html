@@ -1,15 +1,39 @@
 <section class="user-self">
   <article class="user-self-info">
-    <p>{{user.name}}</p>
-    <p>{{user.company.name}}</p>
-    <p>{{user.website}}</p>
-    <p>{{user.phone}}</p>
+    <div class="user-self-info-name">
+      <span>{{user.name | uppercase}}</span>
+      <hr>
+    </div>
+
+    <div class="user-self-data">
+      <div class="left">
+        <span class="headline">Company: </span>
+        <div class="left-data">
+          <span>{{user.company.name}}</span>
+        </div>
+      </div>
+      <div class="left">
+        <span class="headline">Web site: </span>
+        <div class="left-data">
+          <a href="http://{{user.website}}" target="_blank">{{user.website}}</a>
+        </div>
+      </div>
+      <div class="left">
+        <span class="headline">Phone number: </span>
+        <div class="left-data">
+          <span>{{user.phone}}</span>
+        </div>
+      </div>
+
+
+    </div>
+
   </article>
   <article class="user-self-add-post">
     <div class="user-self-add-post-message">
-      <textarea></textarea>
+      <textarea minlength="5" maxlength="300" wrap="soft"></textarea>
     </div>
-    <button>Send</button>
+    <button mat-raised-button color="primary">Send</button>
   </article>
   <app-user-news></app-user-news>
 </section>

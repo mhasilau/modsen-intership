@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserNewsComponent } from './user-news.component';
+import { HeadlinePipe } from '../../../shared/headline.pipe';
 
 @NgModule({
-  declarations: [UserNewsComponent],
+  declarations: [UserNewsComponent, HeadlinePipe],
   imports: [CommonModule],
   exports: [UserNewsComponent],
 })
