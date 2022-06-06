@@ -1,4 +1,4 @@
-<section class="user-self">
+<section class="user-self" *ngIf="user">
   <article class="user-self-info">
     <div class="user-self-info-name">
       <span>{{user.name | uppercase}}</span>
@@ -7,33 +7,35 @@
 
     <div class="user-self-data">
       <div class="left">
-        <span class="headline">Company: </span>
+        <span class="headline">{{ 'user-self.company' | translate }}: </span>
         <div class="left-data">
           <span>{{user.company.name}}</span>
         </div>
       </div>
       <div class="left">
-        <span class="headline">Web site: </span>
+        <span class="headline">{{ 'user-self.site' | translate }}: </span>
         <div class="left-data">
           <a href="http://{{user.website}}" target="_blank">{{user.website}}</a>
         </div>
       </div>
       <div class="left">
-        <span class="headline">Phone number: </span>
+        <span class="headline">{{ 'user-self.phone' | translate }}: </span>
         <div class="left-data">
           <span>{{user.phone}}</span>
         </div>
       </div>
 
-
     </div>
 
   </article>
+
   <article class="user-self-add-post">
     <div class="user-self-add-post-message">
       <textarea minlength="5" maxlength="300" wrap="soft"></textarea>
     </div>
-    <button mat-raised-button color="primary">Send</button>
+    <button mat-raised-button color="primary">{{ 'send' | translate }}</button>
   </article>
+
   <app-user-news></app-user-news>
+
 </section>

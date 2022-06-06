@@ -1,10 +1,22 @@
 {
   "logout": "Logout",
+  "send": "Send",
+  "clear": "Clear",
+  "sign-in": {
+    "email": "Enter your email",
+    "password": "Enter your password"
+  },
   "user-nav": {
     "main": "Main page",
     "news": "News",
     "settings": "Settings",
     "link": "Just a link"
   },
-  "footer": "Mikhail Hasilau for Modsen Software Engineering intership"
+  "user-self": {
+    "company": "Company",
+    "site": "Web site",
+    "phone": "Phone",
+    "send": "Send"
+  },
+  "footer": "Mikhail Hasilau for Modsen Software Engineering internship"
 }
