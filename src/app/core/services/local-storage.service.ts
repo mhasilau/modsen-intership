@@ -12,7 +12,11 @@ export class LocalStorageService {
     localStorage.setItem('token', String(num * Math.pow(10, num.toString().length - 2)));
   }
 
-  getToken(key: string): any {
-    localStorage.getItem(key);
+  getItem(key: string): string | null {
+    return localStorage.getItem(key);
+  }
+
+  removeItem(key: string): void {
+    localStorage.removeItem(key);
   }
 }

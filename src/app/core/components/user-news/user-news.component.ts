@@ -5,7 +5,7 @@ import { UserApiService } from '@core/services';
 import { PostsService } from '@core/services';
 import { IPost, IUser } from '@app/interfaces';
 
-@Component({ // TODO ANSWER: news-component in core directory cause it use in several places
+@Component({ // TODO rebase news to shared
   selector: 'app-user-news',
   templateUrl: './user-news.component.html',
   styleUrls: ['./user-news.component.scss'],
@@ -21,7 +21,7 @@ export class UserNewsComponent implements OnInit{
   postsNews?:IPost[]; // TODO: Code style
   postsSelf?:IPost[]; // TODO: Code style
 
-  ngOnInit(): void {
+  ngOnInit(): void { // TODO: Need to refactor. Combine subscribes
     this.userApiService.user$.subscribe(value => this.user = value);
     this.postsService.getPosts().subscribe(posts => {
       switch (this.router.url) {

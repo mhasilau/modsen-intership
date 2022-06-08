@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LocalStorageService, AuthService, UserApiService } from '@core/services';
+import { LocalStorageService, AuthService, UserApiService, RouterService } from '@core/services';
 import { IUserSignIn } from '@app/interfaces';
 import { REGEXP } from '@shared/validators';
 
@@ -13,7 +12,7 @@ import { REGEXP } from '@shared/validators';
 export class SignInComponent {
   constructor(
     private userApiService: UserApiService,
-    private router: Router,
+    private router: RouterService,
     private authService: AuthService,
     private localStorageService: LocalStorageService
   ) {}
@@ -41,8 +40,8 @@ export class SignInComponent {
       const user = users.find(user => userIn.id === user.id) || null;
       user ? this.localStorageService.generateToken() : null;
       this.userApiService.user$.next(user);
-      if (this.localStorageService.getToken('token')) {
-        void this.router.navigate(['/user']);
+      if (this.localStorageService.getItem('token')) {
+        void this.router.navigate('/user');
       }
     });
   }
@@ -51,7 +50,7 @@ export class SignInComponent {
     this.userApiService.getUserCreeds().subscribe(result => {
       this.userReg = result.find(user => user.email === this.email?.value && user.password === this.password?.value);
       this.userReg ? this.getUsers(this.userReg) : alert('error');
-      this.authService.userAuth$.next(!!localStorage.getItem('token'));
+      this.authService.userAuth$.next(!!this.localStorageService.getItem('token'));
     });
   }
 }

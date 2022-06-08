@@ -18,7 +18,7 @@ const innerRoutes: Routes = [
   { path: 'news', component: UserNewsComponent },
 ];
 
-const routes: Routes = [
+const routes: Routes = [ // TODO change to Lazy
   {
     path: '',
     redirectTo: '/user/self',

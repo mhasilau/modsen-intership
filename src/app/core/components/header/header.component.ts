@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-// import { AuthService } from '../../services/auth.service';
-import { AuthService } from '@core/services';
-
+import { AuthService, LocalStorageService, RouterService } from '@core/services';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent { // TODO fix normal render logout button
+export class HeaderComponent {
 
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(
+    private router: RouterService,
+    public authService: AuthService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   logout(): void {
-    localStorage.removeItem('token');
-    void this.router.navigate(['/sign-in']);
+    this.localStorageService.removeItem('token');
+    this.authService.userAuth$.next(!!this.localStorageService.getItem('token'));
+    void this.router.navigate('sign-in');
   };
 }

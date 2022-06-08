@@ -8,7 +8,10 @@ import { noAvatarURL } from '@app/api';
   styleUrls: ['./user-avatar.component.scss'],
 })
 export class UserAvatarComponent implements OnInit{
-  constructor(private userApiService: UserApiService, private avatarService: AvatarService) {}
+  constructor(
+    private userApiService: UserApiService,
+    private avatarService: AvatarService
+  ) {}
   uid: number | undefined;
   userAvatar: string = noAvatarURL;
 

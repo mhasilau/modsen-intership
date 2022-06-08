@@ -4,11 +4,10 @@ import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { AppRoutingModule } from '@app/app-routing.module';
 
 @NgModule({
   declarations: [HeaderComponent],
-    imports: [CommonModule, RouterModule, AppRoutingModule, MatButtonModule, TranslateModule],
+    imports: [CommonModule, RouterModule, MatButtonModule, TranslateModule],
   exports: [HeaderComponent],
 })
 export class HeaderModule {}
