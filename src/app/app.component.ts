@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit{
-  title: string = '';
+  title: string = ''; // TODO: Remove unused fields
   constructor(private translateService: TranslateService) {}
   ngOnInit(): void {
     this.translateService.use('en');

@@ -3,7 +3,7 @@ export interface IUser {
   name: string,
   username: string,
   email: string,
-  address?: {
+  address?: { // TODO: IUserAddress
     street: string,
     suite: string,
     city: string,
@@ -15,7 +15,7 @@ export interface IUser {
   },
   phone: string,
   website: string,
-  company: {
+  company: { // TODO: IUserCompany
     name: string,
     catchPhrase?: string,
     bs?: string,

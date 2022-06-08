@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserApiService } from '../../../services/user-api.service';
-import { IUser } from '../../../../interfaces/user.interface';
+import { UserApiService } from '../../../services/user-api.service'; // TODO: Use alias.
+import { IUser } from '../../../../interfaces/user.interface'; // TODO: Use alias.
 
 @Component({
   selector: 'app-user-self',
@@ -12,7 +12,7 @@ export class UserSelfComponent implements OnInit{
   user: IUser | null | undefined;
 
   ngOnInit(): void {
-    this.userApiService.user$.subscribe(value => this.user = value);
+    this.userApiService.user$.subscribe(value => this.user = value); // TODO: unsubscribe?
   };
 }
 

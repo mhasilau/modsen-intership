@@ -1,7 +1,7 @@
-header {
+header { // TODO: Style order. Padding/height/margin, second - font, at the end - border/background, etc
   padding: 5px;
   height: 60px;
-  background-color: #8fa3a8;
+  background-color: #8fa3a8; // TODO: Use var
   border-radius: 0 0 20px 20px;
   display: flex;
   justify-content: space-between;

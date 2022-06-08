@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { noAvatarURL } from '../../../../api/api.config';
-import { UserApiService } from '../../../services/user-api.service';
-import { AvatarService } from '../../../services/avatar.service';
+import { noAvatarURL } from '../../../../api/api.config';// TODO: Use alias.
+import { UserApiService } from '../../../services/user-api.service';// TODO: Use alias.
+import { AvatarService } from '../../../services/avatar.service';// TODO: Use alias.
 
 @Component({
   selector: 'app-user-avatar',
