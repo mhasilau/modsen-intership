@@ -4,7 +4,6 @@ import { PostsService } from '../../services/posts.service';
 import { Router } from '@angular/router';
 import { IPost } from '../../../interfaces/posts-interface';
 
-
 @Component({
   selector: 'app-user-news',
   templateUrl: './user-news.component.html',

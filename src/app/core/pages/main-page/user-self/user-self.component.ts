@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserApiService } from '../../../services/user-api.service';
+import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-user-self',
@@ -8,10 +9,9 @@ import { UserApiService } from '../../../services/user-api.service';
 })
 export class UserSelfComponent implements OnInit{
   constructor(private userApiService: UserApiService) {}
-  user: any;
+  user: IUser | null | undefined;
 
   ngOnInit(): void {
-    console.log('self');
     this.userApiService.user$.subscribe(value => this.user = value);
   };
 }
