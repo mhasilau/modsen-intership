@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+// import { AuthService } from '../../services/auth.service';
+import { AuthService } from '@core/services';
+
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,7 @@ export class HeaderComponent { // TODO fix normal render logout button
 
   constructor(private router: Router, public authService: AuthService) {}
 
-  logout = (): void => {
+  logout(): void {
     localStorage.removeItem('token');
     void this.router.navigate(['/sign-in']);
   };

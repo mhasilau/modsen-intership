@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserApiService } from '../../services/user-api.service';
 import { Router } from '@angular/router';
-import { REGEXP } from '../../../shared/regexp';
-import { IUserSignIn } from '../../../interfaces/user.interface';
-import { AuthService } from '../../services/auth.service';
+import { LocalStorageService, AuthService, UserApiService } from '@core/services';
+import { IUserSignIn } from '@app/interfaces';
+import { REGEXP } from '@shared/validators';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +11,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  constructor(private userApiService: UserApiService, private router: Router, private authService: AuthService) {}
+  constructor(
+    private userApiService: UserApiService,
+    private router: Router,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   singInForm = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.pattern(REGEXP.password)]),
@@ -35,9 +39,9 @@ export class SignInComponent {
   getUsers(userIn: IUserSignIn): void {
     this.userApiService.getUser().subscribe(users => {
       const user = users.find(user => userIn.id === user.id) || null;
-      user ? this.authService.generateToken() : null;
+      user ? this.localStorageService.generateToken() : null;
       this.userApiService.user$.next(user);
-      if (localStorage.getItem('token')) {
+      if (this.localStorageService.getToken('token')) {
         void this.router.navigate(['/user']);
       }
     });
