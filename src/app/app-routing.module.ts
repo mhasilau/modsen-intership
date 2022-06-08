@@ -21,10 +21,8 @@ const innerRoutes: Routes = [
 const routes: Routes = [
   {
     path: '',
-
     redirectTo: '/user/self',
     pathMatch: 'full',
-
   },
   {
     path: 'user',
@@ -32,7 +30,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'user', component: MainPageComponent, children: innerRoutes, canActivate: [AuthGuard] },
-
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: '**', component: PageNotFoundComponent },
