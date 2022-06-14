@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+
+const TOKEN = 'token';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,14 +11,14 @@ export class LocalStorageService {
 
   generateToken(): void {
     const num = Math.random();
-    localStorage.setItem('token', String(num * Math.pow(10, num.toString().length - 2)));
+    localStorage.setItem(TOKEN, String(num * Math.pow(10, num.toString().length - 2)));
   }
 
-  getItem(key: string): string | null {
-    return localStorage.getItem(key);
+  getToken(): string | null {
+    return localStorage.getItem(TOKEN);
   }
 
-  removeItem(key: string): void {
-    localStorage.removeItem(key);
+  removeToken(): void {
+    localStorage.removeItem(TOKEN);
   }
 }

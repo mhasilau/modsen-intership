@@ -11,7 +11,7 @@ import { RouterService, UserApiService } from '@core/services';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private userApiService: UserApiService, private router: RouterService) {}
+  constructor(private userApiService: UserApiService, private routerService: RouterService) {}
   canActivate(
   ):
     | Observable<boolean | UrlTree>
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     return this.userApiService.user$.pipe(map(user => {
       if (!user) {
-        void this.router.navigate('/sign-in');
+        void this.routerService.singInNavigate();
       }
       return !!user;
     }));

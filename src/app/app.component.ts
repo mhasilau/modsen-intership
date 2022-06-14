@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalStorageService, RouterService } from '@core/services';
+import { AuthService, RouterService } from '@core/services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit{
-  title: string = '';
+export class AppComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
-    private localStorageService: LocalStorageService,
-    private router: RouterService
+    private routerService: RouterService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.toEnglish();
-    this.navigate();
+    this.authService.init(); // TODO create reactive
   }
 
   toRussian(): void {
@@ -28,7 +27,5 @@ export class AppComponent implements OnInit{
     this.translateService.use('en');
   }
 
-  navigate(): void {
-    this.localStorageService.getItem('token') ? this.router.navigate('') : this.router.navigate('sign-in'); // TODO why doesn't work?
-  }
+
 }

@@ -22,4 +22,8 @@ export class UserApiService {
     return this.http.get<IUserSignIn[]>(JSON_API.users_pass);
   }
 
+  // getUsersId(): Observable<string> {
+  //   return this.http.get<>()
+  // }
+
 }

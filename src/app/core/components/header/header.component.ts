@@ -9,14 +9,12 @@ import { AuthService, LocalStorageService, RouterService } from '@core/services'
 export class HeaderComponent {
 
   constructor(
-    private router: RouterService,
+    private routerService: RouterService,
     public authService: AuthService,
     private localStorageService: LocalStorageService
   ) {}
 
   logout(): void {
-    this.localStorageService.removeItem('token');
-    this.authService.userAuth$.next(!!this.localStorageService.getItem('token'));
-    void this.router.navigate('sign-in');
+    this.authService.logout();
   };
 }
