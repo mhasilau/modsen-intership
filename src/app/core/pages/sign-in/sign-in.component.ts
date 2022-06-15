@@ -1,18 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserApiService } from '../../services/user-api.service';
-import { Router } from '@angular/router';
-import { REGEXP } from '../../../shared/regexp';
-import { IUserSignIn } from '../../../interfaces/user.interface';
-import { AuthService } from '../../services/auth.service';
+import { LocalStorageService, AuthService, UserApiService, RouterService } from '@core/services';
+import { IUserSignIn } from '@app/interfaces';
+import { REGEXP } from '@shared/validators';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent {
-  constructor(private userApiService: UserApiService, private router: Router, private authService: AuthService) {}
+export class SignInComponent implements OnInit{
+  constructor(
+    private userApiService: UserApiService,
+    private routerService: RouterService,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService
+  ) {}
+
+  ngOnInit(): void {
+    console.log(this.authService.userAuth$);
+    // if (this.authService.token$) {
+    //   this.routerService.userPageNavigate();
+    //   console.log(this.authService.token$.subscribe());
+    // }
+  }
 
   singInForm = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.pattern(REGEXP.password)]),
@@ -35,10 +46,11 @@ export class SignInComponent {
   getUsers(userIn: IUserSignIn): void {
     this.userApiService.getUser().subscribe(users => {
       const user = users.find(user => userIn.id === user.id) || null;
-      user ? this.authService.generateToken() : null;
+      user ? this.localStorageService.generateToken() : null;
       this.userApiService.user$.next(user);
-      if (localStorage.getItem('token')) {
-        void this.router.navigate(['/user']);
+      console.log(this.authService.token$);
+      if (this.authService.token$) {
+        void this.routerService.userPageNavigate();
       }
     });
   }
@@ -47,7 +59,8 @@ export class SignInComponent {
     this.userApiService.getUserCreeds().subscribe(result => {
       this.userReg = result.find(user => user.email === this.email?.value && user.password === this.password?.value);
       this.userReg ? this.getUsers(this.userReg) : alert('error');
-      this.authService.userAuth$.next(!!localStorage.getItem('token'));
+      this.authService.userAuth$.next(!!this.localStorageService.getToken());
     });
   }
+
 }

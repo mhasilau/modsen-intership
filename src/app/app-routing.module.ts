@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { SignUpComponent } from './core/pages/sign-up/sign-up.component';
-import { SignInComponent } from './core/pages/sign-in/sign-in.component';
-import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
-import { MainPageComponent } from './core/pages/main-page/main-page.component';
-import { UserSelfComponent } from './core/pages/main-page/user-self/user-self.component';
-import { UserNewsComponent } from './core/components/user-news/user-news.component';
-import { UserSettingsComponent } from './core/pages/main-page/user-settings/user-settings.component';
-import { AuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from '@core/guards';
+import {
+  MainPageComponent,
+  PageNotFoundComponent,
+  SignInComponent,
+  SignUpComponent,
+  UserSelfComponent,
+  UserSettingsComponent
+} from '@core/pages';
+import { UserNewsComponent } from '@core/components';
 
 const innerRoutes: Routes = [
   { path: 'settings', component: UserSettingsComponent },
@@ -17,13 +18,11 @@ const innerRoutes: Routes = [
   { path: 'news', component: UserNewsComponent },
 ];
 
-const routes: Routes = [
+const routes: Routes = [ // TODO change to Lazy
   {
     path: '',
-
     redirectTo: '/user/self',
     pathMatch: 'full',
-
   },
   {
     path: 'user',

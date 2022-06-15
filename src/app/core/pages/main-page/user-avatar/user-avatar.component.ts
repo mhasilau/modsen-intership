@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { noAvatarURL } from '../../../../api/api.config';
-import { UserApiService } from '../../../services/user-api.service';
-import { AvatarService } from '../../../services/avatar.service';
+import { AvatarService, UserApiService } from '@core/services';
+import { noAvatarURL } from '@app/api';
 
 @Component({
   selector: 'app-user-avatar',
@@ -9,9 +8,12 @@ import { AvatarService } from '../../../services/avatar.service';
   styleUrls: ['./user-avatar.component.scss'],
 })
 export class UserAvatarComponent implements OnInit{
-  userAvatar: string = noAvatarURL;
+  constructor(
+    private userApiService: UserApiService,
+    private avatarService: AvatarService
+  ) {}
   uid: number | undefined;
-  constructor(private userApiService: UserApiService, private avatarService: AvatarService) {}
+  userAvatar: string = noAvatarURL;
 
   ngOnInit(): void {
     this.userApiService.user$.subscribe(value => this.uid = value?.id); // TODO communicate subscribes

@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import {
   CanActivate,
   UrlTree,
-  Router
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { UserApiService } from '../services/user-api.service';
+import { RouterService, UserApiService } from '@core/services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private userApiService: UserApiService, private router: Router) {}
+  constructor(private userApiService: UserApiService, private routerService: RouterService) {}
   canActivate(
   ):
     | Observable<boolean | UrlTree>
@@ -21,9 +20,8 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     return this.userApiService.user$.pipe(map(user => {
       if (!user) {
-        void this.router.navigate(['/sign-in']);
+        void this.routerService.singInNavigate();
       }
-
       return !!user;
     }));
   }

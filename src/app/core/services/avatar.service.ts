@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IUserSignIn } from '../../interfaces/user.interface';
+// import { IUserSignIn } from '../../interfaces/user.interface';
 import { JSON_API } from '../../api/api-placeholder.constans';
 import { HttpClient } from '@angular/common/http';
+import { IUserSignIn } from '@app/interfaces';
 
 @Injectable({
   providedIn: 'root'

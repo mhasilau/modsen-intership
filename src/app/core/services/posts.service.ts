@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { JSON_API } from '../../api/api-placeholder.constans';
-import { IPost } from '../../interfaces/posts-interface';
+import { IPost } from '@app/interfaces';
 
 
 @Injectable({

@@ -2,17 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from './app.component';
-import { SignUpModule } from './core/pages/sign-up/sign-up.module';
-import { HeaderModule } from './core/components/header/header.module';
-import { FooterModule } from './core/components/footer/footer.module';
-import { SignInModule } from './core/pages/sign-in/sign-in.module';
-import { PageNotFoundModule } from './core/pages/page-not-found/page-not-found.module';
-import { MainPageModule } from './core/pages/main-page/main-page.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MainPageModule, PageNotFoundModule, SignInModule, SignUpModule } from '@core/pages/modules';
+import { FooterModule, HeaderModule } from '@core/components';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '/assets/locale/', '.json');

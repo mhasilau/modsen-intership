@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { JSON_API } from '../../api/api-placeholder.constans';
-import { IUser, IUserSignIn } from '../../interfaces/user.interface';
+import { IUser, IUserSignIn } from '@app/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +21,9 @@ export class UserApiService {
   getUserCreeds(): Observable<IUserSignIn[]>{
     return this.http.get<IUserSignIn[]>(JSON_API.users_pass);
   }
+
+  // getUsersId(): Observable<string> {
+  //   return this.http.get<>()
+  // }
 
 }
