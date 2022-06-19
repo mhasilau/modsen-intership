@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { JSON_API } from '../../api/api-placeholder.constans';
+import { JSON_API } from '@app/api';
 import { IPost } from '@app/interfaces';
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserApiService } from '@core/services';
+import { UserService } from '@core/services';
 import { PostsService } from '@core/services';
 import { IPost, IUser } from '@app/interfaces';
 import { filter, map, withLatestFrom } from 'rxjs';
@@ -13,7 +13,7 @@ import { filter, map, withLatestFrom } from 'rxjs';
 })
 export class UserNewsComponent implements OnInit{
   constructor(
-    private userApiService: UserApiService,
+    private userService: UserService,
     private postsService: PostsService,
     private router: Router,
   ) {}
@@ -25,7 +25,7 @@ export class UserNewsComponent implements OnInit{
 
   ngOnInit(): void {
     this.postsService.getPosts().pipe(
-      withLatestFrom(this.userApiService.user$),
+      withLatestFrom(this.userService.user$),
       filter(([, user]) => !!user),
       map(([posts, user]) => ({
         posts,

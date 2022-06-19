@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserApiService } from '../../../services/user-api.service';
-import { IUser } from '../../../../interfaces/user.interface';
+import { IUser } from '@app/interfaces';
+import { UserService } from '@core/services';
 
 @Component({
   selector: 'app-user-self',
@@ -8,11 +8,11 @@ import { IUser } from '../../../../interfaces/user.interface';
   styleUrls: ['./user-self.component.scss'],
 })
 export class UserSelfComponent implements OnInit{
-  constructor(private userApiService: UserApiService) {}
+  constructor(private userService: UserService) {}
   user: IUser | null | undefined;
 
   ngOnInit(): void {
-    this.userApiService.user$.subscribe(value => this.user = value);
+    this.userService.user$.subscribe(value => this.user = value);
   };
 }
 

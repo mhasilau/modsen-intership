@@ -22,7 +22,7 @@ const routes: Routes = [ // TODO change to Lazy
   {
     path: '',
     redirectTo: '/user/self',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'user',
