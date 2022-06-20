@@ -20,19 +20,31 @@ export class FakerService {
         console.log(userCreeds);
         if (!userCreeds) return null;
         return FakerService.generateToken(userCreeds.email, userCreeds.password);
-      })
+      }),
     );
   }
 
   getCurrentUser(token: string | null): Observable<IUser | null> {
+    console.log('faker token', token);
     if (!token) return of(null);
     const obj = FakerService.parseToken(token);
     if (!obj) return of(null);
     return this.getUserCreeds().pipe(
       map(usersCreeds => usersCreeds.find(user => user.email === obj.email && user.password === obj.password)),
-      mergeMap(userCreeds => userCreeds ? of(null) : this.getUsers().pipe(
+      mergeMap(userCreeds => !userCreeds ? of(null) : this.getUsers().pipe(
         map(users => users.find(user => user.id === userCreeds!.id) || null)
       ))
+    );
+  }
+
+  getUserAvatar(token: string | null): Observable<string | null> {
+    console.log('faker token', token);
+    if (!token) return of(null);
+    const obj = FakerService.parseToken(token);
+    if (!obj) return of(null);
+    return this.getUserCreeds().pipe(
+      map(usersCreeds => usersCreeds.find(user => user.email === obj.email && user.password === obj.password)),
+      mergeMap(userCreeds => !userCreeds ? of(null) : of(userCreeds.avatar))
     );
   }
 

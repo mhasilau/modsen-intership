@@ -3,7 +3,7 @@ import {
   CanActivate,
   UrlTree,
 } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 import { RouterService, UserService } from '@core/services';
 
 @Injectable({
@@ -18,14 +18,13 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.userService.user$.pipe(map(user => {
+    return this.userService.user$.pipe(
+      filter(user => user !== undefined),
+      map(user => {
       if (!user) {
         this.routerService.singInNavigate();
       }
       return !!user;
     }));
   }
-
-  // TODO User guard - редирект на страницу юзера, если он есть (отдельный гард)
-
 }

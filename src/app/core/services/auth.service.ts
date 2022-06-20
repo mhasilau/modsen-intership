@@ -24,16 +24,14 @@ export class AuthService {
 
   signIn(email: string, password: string): void {
     this.userApiService.signIn(email, password).subscribe(token => {
+      this.localStorageService.setToken(token);
       this.token$.next(token);
-      this.localStorageService.setToken(this.token$.value);
     });
-    if (this.token$.value) this.routerService.userPageNavigate();
   }
 
   logout(): void {
     this.localStorageService.removeToken();
     this.token$.next(null);
-    // this.userAuth$.next(!!this.localStorageService.getToken()); // not use
     void this.routerService.singInNavigate(); //make sure guards work
   }
 }

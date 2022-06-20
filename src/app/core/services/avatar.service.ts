@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { JSON_API } from '@app/api';
-import { HttpClient } from '@angular/common/http';
-import { IUserSignIn } from '@app/interfaces';
+import { FakerService } from '@core/fakers/faker.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AvatarService {
 
-  constructor(private http: HttpClient){ }
+  constructor(private faker: FakerService){ }
 
-  getUserAvatar(): Observable<IUserSignIn[]>{
-    return this.http.get<IUserSignIn[]>(JSON_API.users_pass);
+  getUserAvatar(token: string | null): Observable<any>{
+    return this.faker.getUserAvatar(token); // TODO get user avatar in faker service to return avatar
   }
 }

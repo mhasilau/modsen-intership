@@ -10,10 +10,10 @@ export class UserService {
 
   constructor(private userApiService: UserApiService) { }
 
-  readonly user$ = new BehaviorSubject<IUser | null>(null); // TODO change paths
+  readonly user$ = new BehaviorSubject<IUser | null | undefined >(undefined); // TODO change paths
 
   getCurrentUser(): void {
-    this.userApiService.getCurrentUser().subscribe(u => console.log('user is ', u));
+    this.userApiService.getCurrentUser().subscribe(user => this.user$.next(user));
   }
 
 }

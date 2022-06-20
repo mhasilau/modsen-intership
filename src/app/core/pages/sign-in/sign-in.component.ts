@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService, RouterService } from '@core/services';
+import { AuthService, RouterService, UserService } from '@core/services';
 import { IUserSignIn } from '@app/interfaces';
 import { REGEXP } from '@shared/validators';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit{
 
   singInForm = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.pattern(REGEXP.password)]),
@@ -21,11 +22,14 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private routerService: RouterService,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.authService.token$.subscribe(x => console.log(x));
+      this.userService.user$.pipe(
+        filter(user => !!user)
+      ).subscribe(() => this.routerService.userPageNavigate());
   }
 
   // getErrorMessage(): string {

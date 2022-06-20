@@ -21,13 +21,14 @@ export class AppComponent implements OnInit {
     this.authService.init(); // TODO create reactive
     this.userService.user$.subscribe(u => console.log(u)); // TODO see in console user
     this.authService.token$.subscribe(token => {
+      console.log('app', token);
       if (token) {
         this.userService.getCurrentUser();
       } else {
         this.userService.user$.next(null);
       }
     });
-  }
+  } // TODO unsubscribe takeUntil
 
   toRussian(): void {
     this.translateService.use('ru');

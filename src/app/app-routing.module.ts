@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthGuard } from '@core/guards';
+import { AuthGuard, GuestGuard } from '@core/guards';
 import {
   MainPageComponent,
   PageNotFoundComponent,
@@ -31,7 +31,7 @@ const routes: Routes = [ // TODO change to Lazy
   },
   { path: 'user', component: MainPageComponent, children: innerRoutes, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-in', component: SignInComponent, canActivate: [GuestGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
 

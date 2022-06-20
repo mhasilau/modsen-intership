@@ -1,17 +1,29 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, UrlTree } from '@angular/router';
+import { filter, map, Observable } from 'rxjs';
+import { RouterService, UserService } from '@core/services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuestGuard implements CanActivate {
+  constructor(private userService: UserService, private routerService: RouterService) {}
+
   canActivate(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    route: ActivatedRouteSnapshot,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return this.userService.user$.pipe(
+      filter(user => user !== undefined),
+      map(user => {
+        console.log('guest', user);
+      if (user) {
+        this.routerService.userPageNavigate();
+      }
+      return !user;
+    }));
   }
 
 }
