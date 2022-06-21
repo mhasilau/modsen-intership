@@ -1,27 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '@core/services';
 import { PostsService } from '@core/services';
 import { IPost, IUser } from '@app/interfaces';
-import { filter, map, withLatestFrom } from 'rxjs';
+import { filter, map, Subject, takeUntil, withLatestFrom } from 'rxjs';
 
 @Component({
   selector: 'app-user-news',
   templateUrl: './user-news.component.html',
   styleUrls: ['./user-news.component.scss'],
 })
-export class UserNewsComponent implements OnInit{
+export class UserNewsComponent implements OnInit, OnDestroy {
+
+  private destroy$ = new Subject<void>();
+  user?: IUser | null;
+  postsNews?:IPost[];
+  postsSelf?:IPost[];
+  userName?: string[];
+
   constructor(
     private userService: UserService,
     private postsService: PostsService,
     private router: Router,
   ) {}
-
-  user?: IUser | null;
-  postsNews?:IPost[];
-  postsSelf?:IPost[];
-  userName?: string[];
 
   ngOnInit(): void {
     this.postsService.getPosts().pipe(
@@ -31,6 +33,7 @@ export class UserNewsComponent implements OnInit{
         posts,
         user: user as IUser,
       })),
+      takeUntil(this.destroy$)
     ).subscribe(({ posts, user }) => {
       switch (this.router.url) {
         case '/user/news':
@@ -42,4 +45,9 @@ export class UserNewsComponent implements OnInit{
       }
     });
   };
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

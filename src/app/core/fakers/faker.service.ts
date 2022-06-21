@@ -61,7 +61,6 @@ export class FakerService {
     }
   }
 
-
   private getUsers(): Observable<IUser[]>{
     return this.http.get<IUser[]>(JSON_API.users);
   }

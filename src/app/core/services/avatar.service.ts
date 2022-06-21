@@ -10,6 +10,6 @@ export class AvatarService {
   constructor(private faker: FakerService){ }
 
   getUserAvatar(token: string | null): Observable<any>{
-    return this.faker.getUserAvatar(token); // TODO get user avatar in faker service to return avatar
+    return this.faker.getUserAvatar(token);
   }
 }
