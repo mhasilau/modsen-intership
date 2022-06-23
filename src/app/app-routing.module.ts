@@ -6,19 +6,11 @@ import {
   MainPageComponent,
   PageNotFoundComponent,
   SignInComponent,
-  SignUpComponent,
-  UserSelfComponent,
-  UserSettingsComponent
+  SignUpComponent
 } from '@core/pages';
-import { UserNewsComponent } from '@core/components';
+import { UserLazyModule } from '@core/modules/user-lazy.module';
 
-const innerRoutes: Routes = [
-  { path: 'settings', component: UserSettingsComponent },
-  { path: 'self', component: UserSelfComponent },
-  { path: 'news', component: UserNewsComponent },
-];
-
-const routes: Routes = [ // TODO change to Lazy
+const routes: Routes = [
   {
     path: '',
     redirectTo: '/user/self',
@@ -29,14 +21,18 @@ const routes: Routes = [ // TODO change to Lazy
     redirectTo: '/user/self',
     pathMatch: 'full',
   },
-  { path: 'user', component: MainPageComponent, children: innerRoutes, canActivate: [AuthGuard] },
+  { path: 'user',
+    component: MainPageComponent,
+    loadChildren: () => import('@core/modules/user-lazy.module').then(m => m.UserLazyModule),
+    canActivate: [AuthGuard]
+  },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent, canActivate: [GuestGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), UserLazyModule],
   exports: [RouterModule, BrowserModule],
 })
 export class AppRoutingModule {}
