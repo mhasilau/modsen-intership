@@ -8,7 +8,7 @@ import {
   SignInComponent,
   SignUpComponent
 } from '@core/pages';
-import { UserLazyModule } from '@core/modules/user-lazy.module';
+import { UserModule } from '@core/modules/user.module';
 
 const routes: Routes = [
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   { path: 'user',
     component: MainPageComponent,
-    loadChildren: () => import('@core/modules/user-lazy.module').then(m => m.UserLazyModule),
+    loadChildren: () => import('@core/modules/user.module').then(m => m.UserModule),
     canActivate: [AuthGuard]
   },
   { path: 'sign-up', component: SignUpComponent },
@@ -32,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), UserLazyModule],
+  imports: [RouterModule.forRoot(routes), UserModule],
   exports: [RouterModule, BrowserModule],
 })
 export class AppRoutingModule {}

@@ -20,4 +20,4 @@ import { UserSettingsModule } from '@core/pages/main-page/user-settings/user-set
     ])
   ]
 })
-export class UserLazyModule { }
+export class UserModule { }

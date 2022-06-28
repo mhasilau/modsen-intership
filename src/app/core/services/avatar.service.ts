@@ -9,7 +9,7 @@ export class AvatarService {
 
   constructor(private faker: FakerService){ }
 
-  getUserAvatar(token: string | null): Observable<any>{
+  getUserAvatar(token: string | null): Observable<string | null>{
     return this.faker.getUserAvatar(token);
   }
 }

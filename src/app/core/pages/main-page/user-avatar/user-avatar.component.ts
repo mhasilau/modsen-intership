@@ -10,7 +10,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class UserAvatarComponent implements OnInit, OnDestroy {
 
-  userAvatar: string = noAvatarURL;
+  userAvatar!: string | null;
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -19,7 +19,7 @@ export class UserAvatarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.avatarService.getUserAvatar(this.authService.token$.value).pipe(takeUntil(this.destroy$)).subscribe(avatar => this.userAvatar = avatar);
+    this.avatarService.getUserAvatar(this.authService.token$.value).pipe(takeUntil(this.destroy$)).subscribe(avatar => avatar ? this.userAvatar = avatar : this.userAvatar = noAvatarURL);
   };
 
   ngOnDestroy(): void {
