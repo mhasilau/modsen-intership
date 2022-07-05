@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { AvatarService, UserApiService } from '@core/services';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService, AvatarService } from '@core/services';
 import { noAvatarURL } from '@app/api';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-user-avatar',
   templateUrl: './user-avatar.component.html',
   styleUrls: ['./user-avatar.component.scss'],
 })
-export class UserAvatarComponent implements OnInit{
+export class UserAvatarComponent implements OnInit, OnDestroy {
+
+  userAvatar!: string | null;
+  private destroy$ = new Subject<void>();
+
   constructor(
-    private userApiService: UserApiService,
-    private avatarService: AvatarService
+    private avatarService: AvatarService,
+    private authService: AuthService
   ) {}
-  uid: number | undefined;
-  userAvatar: string = noAvatarURL;
 
   ngOnInit(): void {
-    this.userApiService.user$.subscribe(value => this.uid = value?.id); // TODO communicate subscribes
-    this.avatarService.getUserAvatar().subscribe(users => {
-      const userLogin = users.find(user => user.id === this.uid);
-      this.userAvatar = userLogin!.avatar;
-    });
+    this.avatarService.getUserAvatar(this.authService.token$.value).pipe(takeUntil(this.destroy$)).subscribe(avatar => avatar ? this.userAvatar = avatar : this.userAvatar = noAvatarURL);
   };
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

@@ -9,9 +9,10 @@ export class LocalStorageService {
 
   constructor() { }
 
-  generateToken(): void {
-    const num = Math.random();
-    localStorage.setItem(TOKEN, String(num * Math.pow(10, num.toString().length - 2)));
+  setToken(token: string | null): void {
+    if (typeof token === 'string') {
+      localStorage.setItem(TOKEN, token);
+    }
   }
 
   getToken(): string | null {

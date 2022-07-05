@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService, LocalStorageService, RouterService } from '@core/services';
+import { AuthService, LocalStorageService, RouterService, UserService } from '@core/services';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,8 @@ export class HeaderComponent {
   constructor(
     private routerService: RouterService,
     public authService: AuthService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    public userService: UserService
   ) {}
 
   logout(): void {

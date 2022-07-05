@@ -1,42 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthGuard } from '@core/guards';
+import { AuthGuard, GuestGuard } from '@core/guards';
 import {
   MainPageComponent,
   PageNotFoundComponent,
   SignInComponent,
-  SignUpComponent,
-  UserSelfComponent,
-  UserSettingsComponent
+  SignUpComponent
 } from '@core/pages';
-import { UserNewsComponent } from '@core/components';
+import { UserModule } from '@core/modules/user.module';
 
-const innerRoutes: Routes = [
-  { path: 'settings', component: UserSettingsComponent },
-  { path: 'self', component: UserSelfComponent },
-  { path: 'news', component: UserNewsComponent },
-];
-
-const routes: Routes = [ // TODO change to Lazy
+const routes: Routes = [
   {
     path: '',
     redirectTo: '/user/self',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'user',
     redirectTo: '/user/self',
     pathMatch: 'full',
   },
-  { path: 'user', component: MainPageComponent, children: innerRoutes, canActivate: [AuthGuard] },
+  { path: 'user',
+    component: MainPageComponent,
+    loadChildren: () => import('@core/modules/user.module').then(m => m.UserModule),
+    canActivate: [AuthGuard]
+  },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-in', component: SignInComponent, canActivate: [GuestGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), UserModule],
   exports: [RouterModule, BrowserModule],
 })
 export class AppRoutingModule {}

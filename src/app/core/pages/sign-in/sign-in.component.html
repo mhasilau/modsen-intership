@@ -5,14 +5,14 @@
     <mat-form-field appearance="fill">
       <mat-label>{{ 'sign-in.email' | translate }}</mat-label>
       <input matInput placeholder="pat@example.com" formControlName="email">
-      <mat-error *ngIf="email?.invalid">{{getErrorMessage()}}</mat-error>
+<!--      <mat-error *ngIf="email?.invalid">{{getErrorMessage()}}</mat-error>-->
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>{{ 'sign-in.password' | translate }}</mat-label>
-      <input matInput [type]="hide_password_icon ? 'password' : 'text'" class="form-control" formControlName="password">
-      <button mat-icon-button matSuffix (click)="hide_password_icon = !hide_password_icon" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide_password_icon" >
-        <mat-icon>{{hide_password_icon ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input matInput [type]="hidePasswordIcon ? 'password' : 'text'" class="form-control" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hidePasswordIcon = !hidePasswordIcon" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordIcon" >
+        <mat-icon>{{hidePasswordIcon ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
 
